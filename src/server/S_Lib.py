@@ -49,10 +49,6 @@ class Lib:
         self.tilesZip[xians[2]] = self.x3T_
 
 
-    def tidyUp(self, deck):
-        for tile in deck:
-            if tile[-1] == '万':
-                pass
 
 
 
