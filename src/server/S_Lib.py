@@ -3,8 +3,7 @@ import pickle
 
 
 class Lib:
-    def __init__(self):
-        self.cliNum = 0
+    def __init__(self, mode):
         self.allTiles = ['1万', '2万', '3万', '4万', '5万', '6万', '7万', '8万', '9万',
                          '1条', '2条', '3条', '4条', '5条', '6条', '7条', '8条', '9条',
                          '1筒', '2筒', '3筒', '4筒', '5筒', '6筒', '7筒', '8筒', '9筒',
@@ -18,21 +17,13 @@ class Lib:
         self.x3T = []
         self.zT = []
 
-        #万，条，筒
-        self.classify = [[[],[],[],],
-                         [[],[],[],],
-                         [[],[],[],],
-                         [[],[],[]]]
-
-
-
         self.banker = random.randint(0, 3)
 
         self.playersList = []
 
         self.tilesZip = {}
 
-    def deal(self, mode):
+        #  分牌
         if mode == 1:
             self.allTiles += self.flowers
         random.shuffle(self.allTiles)
@@ -41,15 +32,15 @@ class Lib:
         self.x3T = self.allTiles[26:39]
         self.zT = self.allTiles[39:53]
         for i in range(53):
-            self.allTiles.pop(i)#发完牌后牌库更新
+            self.allTiles.pop(i)#  发完牌后牌库更新
 
-        #压缩
+        #  压缩
         self.x1T_ = pickle.dumps(self.x1T)
         self.x2T_ = pickle.dumps(self.x2T)
         self.x3T_ = pickle.dumps(self.x3T)
-        self.zT_ = pickle.dumps(self.x1T)
+        self.zT_ = pickle.dumps(self.zT)
 
-        #制作压缩包
+        #  制作压缩包
         self.tilesZip[self.banker] = self.zT_
         xians = [0, 1, 2, 3]
         xians.remove(self.banker)
@@ -58,9 +49,10 @@ class Lib:
         self.tilesZip[xians[2]] = self.x3T_
 
 
-    def tidyUp(self, localNum):
+    def tidyUp(self, deck):
         for tile in deck:
             if tile[-1] == '万':
+                pass
 
 
 
